@@ -4,7 +4,7 @@ const rp = require('request-promise')
 
 router.get('/categories', async (req, res, next) => {
   try {
-    var options = {
+    const options = {
       uri: 'https://transactions.spokedev.xyz/transactions',
       headers: {
          'User-Agent': 'Request-Promise'
@@ -14,7 +14,8 @@ router.get('/categories', async (req, res, next) => {
 
     rp(options)
       .then(function (response) {
-         console.log(response);
+         res.send(response);
+         const transformCategories = tCategories(response)
       })
       .catch(function (err) {
          // API call failed...
